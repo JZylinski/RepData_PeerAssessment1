@@ -110,7 +110,7 @@ byInterval <- data %>% filter(!is.na(data$steps)) %>% group_by(interval) %>% sum
 plot(byInterval$interval, byInterval$steps, type = "l", xlab = "Interval", ylab = "Average Steps Taken", main = "Average Number of Steps Taken per Time Interval - All Days")
 ```
 
-![](PA1_template_files/figure-html/daily activity plot-1.png)<!-- -->
+![](PA1_template_files/figure-html/daily_activity_plot-1.png)<!-- -->
 
 ### Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -155,7 +155,7 @@ gImp <- ggplot(ImpbyDate,aes(steps))
 gImp + geom_histogram(binwidth = 2500) + labs(title = "Histogram of Total Steps per Day with Imputed Data", y = "Count of Days", x = "Steps Taken")
 ```
 
-![](PA1_template_files/figure-html/Imputed histogram-1.png)<!-- -->
+![](PA1_template_files/figure-html/Imputed_histogram-1.png)<!-- -->
 
 
 ```r
@@ -195,7 +195,7 @@ gpanel <- gpanel + labs(title="Average Number of Steps Taken per Time Interval B
 gpanel
 ```
 
-![](PA1_template_files/figure-html/panel plot-1.png)<!-- -->
+![](PA1_template_files/figure-html/panel_plot-1.png)<!-- -->
 
 The panel plot shows that the highest peak of steps for a 5-minute interval occurs during the weekdays.
 

@@ -52,11 +52,11 @@ g + geom_histogram(binwidth = 2500) + labs(title = "Histogram of Total Steps per
 
 ### Make a time series plot (i.e. 𝚝𝚢𝚙𝚎 = "𝚕") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
-```{r daily activity pattern}
+```{r daily_activity_pattern}
 byInterval <- data %>% filter(!is.na(data$steps)) %>% group_by(interval) %>% summarize(steps = mean(steps))
 ```
 
-```{r daily activity plot}
+```{r daily_activity_plot}
 plot(byInterval$interval, byInterval$steps, type = "l", xlab = "Interval", ylab = "Average Steps Taken", main = "Average Number of Steps Taken per Time Interval - All Days")
 ```
 
@@ -86,16 +86,16 @@ impData$steps[is.na(impData$steps)] <- byInterval$steps[match(impData$interval,b
 ImpbyDate <- impData %>% group_by(date) %>% summarize(steps = sum(steps))
 ```
 
-```{r Imputed histogram}
+```{r Imputed_histogram}
 gImp <- ggplot(ImpbyDate,aes(steps))
 gImp + geom_histogram(binwidth = 2500) + labs(title = "Histogram of Total Steps per Day with Imputed Data", y = "Count of Days", x = "Steps Taken")
 ```
 
-```{r Imputed mean}
+```{r Imputed_mean}
 ImpmeanSteps <- mean(ImpbyDate$steps)
 ```
 
-```{r Imputed median}
+```{r Imputed_median}
 ImpmedianSteps <- median(ImpbyDate$steps)
 ```
 
@@ -113,11 +113,11 @@ impData$daytype <- ifelse(weekdays(as.Date(impData$date)) %in% c("Saturday","Sun
 
 ### Make a panel plot containing a time series plot (i.e. 𝚝𝚢𝚙𝚎 = "𝚕") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
 
-```{r daytype pattern}
+```{r daytype_pattern}
 byIntervalDayType <- impData %>% group_by(daytype, interval) %>% summarize(steps = mean(steps))
 ```
 
-```{r panel plot}
+```{r panel_plot}
 gpanel <- ggplot(byIntervalDayType, aes(interval,steps))
 gpanel <- gpanel + facet_grid(daytype~.) + geom_line()
 gpanel <- gpanel + labs(title="Average Number of Steps Taken per Time Interval By Day Type", x="Interval", y="Steps")
@@ -126,12 +126,12 @@ gpanel
 
 The panel plot shows that the highest peak of steps for a 5-minute interval occurs during the weekdays.
 
-```{r maxsteps by daytype}
+```{r maxsteps_by_daytype}
 byIntervalDayType %>% slice(steps %>% which.max)
 ```
 
 However, overall the most active day type is the weekend day with more total average steps than a weekday.
 
-```{r total average steps}
+```{r total_average_steps}
 byIntervalDayType %>% group_by(daytype) %>% summarize(steps = sum(steps))
 ```
