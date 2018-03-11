@@ -1,8 +1,11 @@
 ---
 title: "Reproducible Research: Peer Assessment 1"
+author: "Joy Zylinski"
+date: "2018-03-11"
 output: 
   html_document:
-    keep_md: true
+    fig_caption: yes
+    keep_md: yes
 ---
 
 
